@@ -1,0 +1,42 @@
+:root {
+    --background-color: #Afdd9e;
+    --text: #efd0ef ;
+    --button: #646f58;
+    --header: #Bae0e5;
+    --section: #d7d7d7 ;
+}
+.bona-nova-regular {
+  font-family: "Bona Nova", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bona-nova-bold {
+  font-family: "Bona Nova", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.bona-nova-regular-italic {
+  font-family: "Bona Nova", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+h1 {
+    font-family: "Fleur De Leah", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2 {
+  font-family: "Bona Nova", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+p {
+  font-family: "Bona Nova", serif;
+  font-weight: 400;
+  font-size: normal;
+}
