@@ -1,10 +1,22 @@
 :root {
-    --background-color: #Afdd9e;
-    --text: #efd0ef ;
-    --button: #646f58;
-    --header: #Bae0e5;
-    --section: #d7d7d7 ;
+    --lt-green: #Afdd9e;
+    --pink: #efd0ef ;
+    --dk-green: #646f58;
+    --blue: #Bae0e5;
+    --silver: #d7d7d7 ;
 }
+
+.page-container {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: var(--silver);
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
 .bona-nova-regular {
   font-family: "Bona Nova", serif;
   font-weight: 400;
@@ -27,6 +39,10 @@ h1 {
     font-family: "Fleur De Leah", cursive;
     font-weight: 400;
     font-style: normal;
+    font-size: 60px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0.3em;
 }
 
 h2 {
@@ -40,3 +56,33 @@ p {
   font-weight: 400;
   font-size: normal;
 }
+
+body {
+  background-image: url('css-pattern-by-magicpattern.png');
+}
+
+section {
+  background-color: var(--silver);
+}
+
+footer {
+  background-color: var(--silver);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-family: "Bona Nova", serif;
+  font-weight: 200;
+  font-size: 25px;
+}
+
+nav a:hover {
+  color: var(--dk-green);
+  font-size: 26px;
+}
+
