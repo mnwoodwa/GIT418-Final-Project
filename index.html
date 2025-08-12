@@ -127,9 +127,16 @@
                 </section>
                 <section id = "slideshow">
                     <h2>Gallery</h2>
-                    <img src = "GreenNecklace.jpg" alt = "Green and gold crystal necklace on display stand with sun pendant in the center and stars hanging down by chains">
-                    <img src = "Pixienecklace.jpg" alt = "Tinkerbell inspired necklace with golden fairy wings in the center and green beads on one side and blue on the other.">
-                    <img src = "DaphneNecklace.jpg" alt = "simple and elegant necklace with purple crystals and diamonds. There is also a purple crystal-like pendant at the center.">
+                    <div class = "carousel">
+                        <div class = "slides">
+                            <img class = "slide" src = "GreenNecklace.jpg" alt = "Green and gold crystal necklace on display stand with sun pendant in the center and stars hanging down by chains">
+                            <img class = "slide" src = "Pixienecklace.jpg" alt = "Tinkerbell inspired necklace with golden fairy wings in the center and green beads on one side and blue on the other.">
+                            <img class = "slide" src = "DaphneNecklace.jpg" alt = "simple and elegant necklace with purple crystals and diamonds. There is also a purple crystal-like pendant at the center.">
+                        </div>
+                        <button class = "previous" onclick="prevSlide()">&#10094</button>
+                        <button class = "next" onclick = "nextSlide()">&#10095</button>
+
+                    </div>
                 </section>
             </main>
             <footer>
