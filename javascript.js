@@ -1,7 +1,7 @@
 $("#accordion").accordion();
 
 
-document.querySelector("#pinterestSubmit").addEventListener("click", function(e){
+/*document.querySelector("#pinterestSubmit").addEventListener("click", function(e){
     e.preventDefault();
     //form input
     let searchInput = document.getElementById("#searchPinterest");
@@ -64,8 +64,93 @@ document.querySelector("#pinterestSubmit").addEventListener("click", function(e)
     }
 })
    
-    
+    */
+/*function fetchAndDisplayImagesXHR() {
 
+    const url = 'https://pinscrape.p.rapidapi.com/api/kurizutaz/sketches/pins';
+
+    xhr.open('GET', url);
+    xhr.withCredentials = true;
+
+    xhr.setRequestHeader('x-rapidapi-key', '7d3cfbb5e5msh8095543ec6da539p175e26jsn4dbfdc1cc7e6');
+    xhr.setRequestHeader('x-rapidapi-host', 'pinscrape.p.rapidapi.com');
+
+    xhr.onReadyStateChange = function() {
+        if(xhr.readyState === XMLHttpRequest.DONE) {
+            if(xhr.status === 200) {
+                try {
+                    const data = JSON.parse(xhr.responseText);
+                    const resultsDiv = document.getElementById('pinterestResults');
+                    resultsDiv.innerHTML = "";
+
+                    data.images.forEach(image => {
+                        const img = document.createElement('img');
+                        img.src = image.src;
+                        img.alt = image.alt || 'Pinterest image';
+                        img.style.width = '200px';
+                        img.style.margin = '5px';
+                        resultsDiv.appendChild(img);
+                    });
+                } catch(error) {
+                    console.error('Error parsing JSON:', error);
+                }
+            } else {
+                console.error('API request failed with status:', xhr.status);
+            }
+        }
+    };
+    xhr.send();
+}
+
+fetchAndDisplayImagesXHR();
+*/
+document.addEventListener("DOMContentLoaded", () => {
+    const pinterestForm = document.querySelector("#pinterestAPI form");
+    const resultsDiv = document.getElementById("pinterestResults");
+
+    pinterestForm.addEventListener("submit", async(e) => {
+        e.preventDefault();
+        resultsDiv.innerHTML = "<p>Loading images...</p>";
+        const query = document.getElementById("searchPinterest").value.trim();
+        if(!query) {
+            resultsDiv.innerHTML = "<p>Please enter a search term.</p>"
+            return;
+        }
+        const url = 'https://pinscrape.p.rapidapi.com/api/kurizutaz/sketches/pins';
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key': '7d3cfbb5e5msh8095543ec6da539p175e26jsn4dbfdc1cc7e6',
+                    'x-rapidapi-host': 'pinscrape.p.rapidapi.com',
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+            const data = await response.json();
+
+            if(!data.images || data.images.length === 0) {
+                resultsDiv.innerHTML = "<p>No images found</p>";
+                return;
+            }
+            resultsDiv.innerHTML = "";
+
+            data.images.forEach((imgData) => {
+                const img = document.createElement("img");
+                img.src = imgData.src;
+                img.alt = imgData.alt || "Pinterest image";
+                img.style.width = "200px";
+                img.style.margin = "5px";
+                resultsDiv.appendChild(img);
+            });
+            document.getElementById("searchPinterest").value = "";
+        } catch(error) {
+            console.error("Fetch error:", error);
+            resultsDiv.innerHTML = `<p>There was a problem fetching images: ${error.message}</p>`;
+        }
+    });
+});
 function createUser(e) {
     e.preventDefault();
 
