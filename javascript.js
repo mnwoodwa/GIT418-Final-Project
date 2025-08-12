@@ -1,32 +1,35 @@
 $("#accordion").accordion();
 
-//function searchPinterest() {
-    //e.preventDefault();
-//}
+
 document.querySelector("#pinterestSubmit").addEventListener("click", function(e){
     e.preventDefault();
     //form input
-    let searchInput = document.getElementById("searchPinterest");
+    let searchInput = document.getElementById("#searchPinterest");
 
     //search query variable
     let query = encodeURIComponent(searchInput.value.trim());
 
     // error message span
-   // let errorSpan = document.querySelector("#apisExample .message");
+   let errorSpan = document.querySelector("#pinterestAPI .message");
 
     //build output
-    //let output = "<ul>";
+    let output = "<ul>";
 
     //display output
     let searchResults = document.getElementById("pinterestResults");
-    searchResults.innerHTML = "";
+    //searchResults.innerHTML = "";
 
-    if(!query) {
-        searchResults.innerHTML = "<p>Please enter a search term.</p>";
-        return;
-    }
+     if(searchInput.value === "") {
+        //display error
+       searchInput.classList.add("errorInput");
+       errorSpan.classList.add("error");
+       return;
+    } else {
+        const data = null;
+        const urlStart = 'https://pinterest-image-api1.p.rapidapi.com/images';
+        const rapidApiKey = '7d3cfbb5e5msh8095543ec6da539p175e26jsn4dbfdc1cc7e6';
+        const endPoint = `${urlStart}?term=${query}`;
 
-    const url = `https://pinterest-image-api1.p.rapidapi.com/images?search=${query}`;
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
@@ -35,68 +38,32 @@ document.querySelector("#pinterestSubmit").addEventListener("click", function(e)
             //check status of returned response. Only want to show successful
             if(this.status === 200) {
                 //API to JSON object
-                let response = JSON.parse(this.response);
+                let response = JSON.parse(this.responseText);
                 //allow us to preview data
-                console.log(response);
+                console.log(response.images);
 
-                let output = "<ul>";
-                (response.images || []).forEach(result => {
-                    output += `<li><a href = "${result.url}" target = "_blank">View image</a></li>`;
-                });
+                //let output = "<ul>";
+                for(let imageUrl of response.images) {
+                    output += `<li><img src = "${imageUrl}" width: "200";"></li>`;
+                }
                 output += "</ul>";
                 searchResults.innerHTML = output;
                 searchInput.value = "";
             } else {
                 searchResults.innerHTML = "<p>There was an issue with your call to the API.</p>";
-                console.error("API error:", this.status, this.responseText);
+                //console.error("API error:", this.status, this.responseText);
             }
         }
     });
     //send ajax request
-    xhr.open('GET', url);
-    xhr.setRequestHeader('x-rapidapi-key', '7d3cfbb5e5msh8095543ec6da539p175e26jsn4dbfdc1cc7e6');
+    xhr.open('GET', endPoint);
+    xhr.setRequestHeader('x-rapidapi-key', rapidApiKey);
     xhr.setRequestHeader('x-rapidapi-host', 'pinterest-image-api1.p.rapidapi.com');
 
-    xhr.send();
-});
-    //clear old output and error messages
-    //searchInput.classList.remove("errorInput");
-   // errorSpan.classList.remove("error");
-   // searchResults.innerHTML = "";
-
-    //is the input empty?
-   // if(searchInput.value === "") {
-        //display error
-      //  searchInput.classList.add("errorInput");
-      //  errorSpan.classList.add("error");
-   // } else {
-        //const data = null;
-        //const urlStart = "https://pinterest-image-api1.p.rapidapi.com/images";
-        //const rapidApiKey = "7d3cfbb5e5msh8095543ec6da539p175e26jsn4dbfdc1cc7e6";
-       // const endPoint = `${urlStart}?search=${query}`;
-
-    //create ajax object
-    //const xhr = new XMLHttpRequest();
-    //api key will be used with this request
-    //xhr.withCredentials = true;
-
+    xhr.send(data);
+    }
+})
    
-                //format output
-               // for(let result of response.results) {
-                   // output += `<li><a href = "${result.images}">`;
-              //  }
-               // output += "</ul>";
-                //add results to the page
-               // searchResults.innerHTML = output;
-               // searchInput.value = "";
-           // } else {
-                //display an issue
-                //searchResults.innerHTML = "<p>There was an issue with your call to the API. Check your endpoint, code, and key</p>";
-           // }
-       // }
-   // });
-
-    //send ajax request
     
 
 function createUser(e) {
@@ -150,8 +117,88 @@ function createUser(e) {
         //user object
         let user = {};
     }
+    if(silverRadio.checked) {
+        user = {
+            firstName: fNameInput.value,
+            lastName: lNameInput.value,
+            metalPref: "silver",
+            email: emailInput.value,
+            phone: phoneInput.value
+    };
+    } else {
+        user = {
+            firstName: fNameInput.value,
+            lastName: lNameInput.value,
+            metalPref: "gold",
+            email: emailInput.value,
+            phone: phoneInput.value
+        };
+    }
+    //user to local storage
+    if(localStorage.getItem("newUser")) {
+        modal.classList.remove("hidden");
+        //if they click confirm replace new user with the old
+        document.getElementById("confirm2").addEventListener("click", function(){
+            //stringify JSON
+            let userString = JSON.stringify(user);
+            //remove original object
+            localStorage.removeItem("newUser");
+            //write new object to storage
+            localStorage.setItem("newUser", userString);
+            //display user
+            displayUser();
+            //reset the form
+            fNameInput.value = "";
+            lNameInput.value = "";
+            goldRadio.checked = true;
+            silverRadio.checked = false;
+            emailInput.value = "";
+            phoneInput.value = "";
+        });
+        //if they click cancel
+        document.getElementById("cancel2").addEventListener("click", function(){
+            //hide modal
+            modal.classList.add("hidden");
+        });
+    } else {
+        //stringify JSON
+        let userString = JSON.stringify(user);
+        //write it to local storage
+        localStorage.setItem("newUser", userString);
+        //display user
+        displayUser();
+        //reset form
+        fNameInput.value = "";
+        lNameInput.value = "";
+        goldRadio.checked = true;
+        silverRadio.checked = false;
+        emailInput.value = "";
+        phoneInput.value = "";
+    }
+}
 
+function displayUser() {
+    //check if there is a user in storage
+    if(localStorage.getItem("newUser")) {
+        //paragraph to display output
+        let outputP = document.getElementById("objectDisplay");
+        //string for output build
+        let output = "";
+        //get user from storage
+        let userString = localStorage.getItem("newUser");
+        //parse string into JSON
+        let user = JSON.parse(userString);
 
-
-
+        if(user.metalPref == "silver") {
+            output += `<strong>Welcome Back!</strong>
+                        <br>${user.firstName} ${user.lastName}
+                        <br>${user.email} ${user.phone}`;
+        } else {
+            output += `<strong>Welcome Back!</strong>
+                        <br>${user.firstName} ${user.lastName}
+                        <br>${user.email} ${user.phone}`;
+        }
+        //display object properties
+        outputP.innerHTML = output;
+    }
 }
