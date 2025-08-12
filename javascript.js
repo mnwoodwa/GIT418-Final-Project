@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
             resultsDiv.innerHTML = "<p>Please enter a search term.</p>"
             return;
         }
-        const url = 'https://pinscrape.p.rapidapi.com/api/kurizutaz/sketches/pins';
+        const url = 'https://pinscrape.p.rapidapi.com/api/hufflepuffnerd22/Whimsy/pins';
         try {
             const response = await fetch(url, {
                 method: 'GET',
