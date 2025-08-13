@@ -33,18 +33,18 @@
                 <section id = "plugin">
                     <h2>Welcome to my little shop of necklaces and trinkets!</h2>
                     <!--- <h4 id = "plugin-topic" class = "sr-only">Accordion</h4>-->
-                    <section id = "accordion" class="subsec" aria-labelledby="plugin-topic">
+                    <section id = "accordion" class="subsec">
                         <h5>About the Owner</h5>
-                        <section class = "no_shadow">
+                        <div class = "no_shadow">
                             <img src = "headshot.jpg" alt = "Meredith heashot wearing a blue and white flower dress with yellow wildflowers in the background.">
                             <p>Hello! I'm Meredith! Im currently living in Arizona studying at ASU. I have always been on the creative side, and I LOVE sharing my whimsy creations and ideas with people. Thank you for stopping by my shop and enjoy the sparkly and shiny treasures that take hold. </p>
-                        </section>
+                        </div>
                         <h5>Storytime</h5>
-                        <section class = "no_shadow">
+                        <div class = "no_shadow">
                             <p>Whimsical Treasures was founded in April 2024 after Meredith found inspiration from leftover beads she found tucked away in a closet. She started making necklaces and bracelets for her friends and loved ones. Other people started to notice the jewelry designs and said that Meredith should start her own jewelry business, which is exactly what she did!</p>
-                        </section>
+                        </div>
                         <h5>What we Sell</h5>
-                        <section class = "no_shadow">
+                        <div class = "no_shadow">
                             <p>Our necklaces and jewelry are affordable and customizable to whatever the customer wants. Below are the price ranges for different pieces of jewelry...</p>
                             <ul>
                                 <li>Necklaces: $20 - $50 (depending on add ons and layers)</li>
@@ -56,38 +56,25 @@
                                 <li>Belt chain: $30 - $60</li>
                                 <li>Earrings: $10 - $15</li>
                             </ul>
-                        </section>
+                        </div>
                     </section>
                 </section>
-                <section id = "ajaxSection">
-                    <h2>Moodboards and Inspo</h2>
+                <div id = "ajaxSection">
                     <section id="pinterestAPI" class="subsec">
+                       <h2>Moodboards and Inspo</h2>
                     <!--SEO API Example-->
                         <form>
-                            <label for="searchTopic">Enjoy an aesthetic moodboard on your screen:</label>
+                            <label for="searchPinterest">Enjoy an aesthetic moodboard on your screen:</label>
                             <span class="message"></span>
                             <input type="text" id="searchPinterest">
                             <input type="submit" id="pinterestSubmit" value="Search Pinterest">
                         </form>
                         <div id="pinterestResults"></div>
                     </section>
-                </section>
-                <!--<section id = "ajaxSection">
-                    <h2>Social Media Feed</h2>
-                    <section id="apisExample" class="subsec">
-                SEO API Example
-                <form>
-                    <label for="searchTopic">Instagram</label>
-                    <span class="message"></span>
-                    <input type="text" name="searchTopic" id="searchTopic">
-                    <input type="submit" name="mySubmit" id="mySubmit" value="Search Instagram">
-                </form>
-                <div id="results"></div>
-                </section>
-                </section>-->
-                <section id = "order">
-                    <h2>Order Custom Design</h2>
+                </div>
+                <div id = "order">
                     <section id="storeObjects">
+                        <h2>Order Custom Design</h2>
                 <!-- <p>You can also store objects in local storage. They key/value pair syntax should sound familiar in that we use those to represent values in objects as well, but because each item in storage is a single pair you may think that it's necessary to store each property of the object separately. In fact, you can use the JSON methods stringify and parse to format your object data to save as a value in web storage and then use it again in your code, similar to the way you'd handle communicating with an API.</p>-->
                         <p id="objectDisplay"></p>
                         <form>
@@ -100,9 +87,9 @@
                             <fieldset>
                             <legend>Metal<span class="required">*</span></legend>
                             <input type="radio" name="metal" id="prefGold" checked>
-                            <label for="email">Gold</label>
+                            <label for="prefGold">Gold</label>
                             <input type="radio" name="metal" id="prefSilver">
-                            <label for="phone">Silver</label>
+                            <label for="prefSilver">Silver</label>
                             </fieldset>
                             <label for="myEmail">Email Address:<span class="required">*</span></label>
                             <span class="message">Please enter your email address</span>
@@ -114,6 +101,7 @@
                             <input type="submit" name="objSubmit" id="objSubmit">
                         </form>
                     </section>
+                </div>
                     <div id="modal2" class="hidden">
                         <div id="inner-modal2">
                         <p>There is already a user in local storage. Do you want to erase that user's information and save this information instead?</p>
@@ -129,8 +117,8 @@
                                 <img class = "slide" src = "Pixienecklace.jpg" alt = "Tinkerbell inspired necklace with golden fairy wings in the center and green beads on one side and blue on the other.">
                                 <img class = "slide" src = "DaphneNecklace.jpg" alt = "simple and elegant necklace with purple crystals and diamonds. There is also a purple crystal-like pendant at the center.">
                             </div>
-                            <button class = "previous" onclick="prevSlide()">&#10094</button>
-                            <button class = "next" onclick = "nextSlide()">&#10095</button>
+                            <button class = "previous" onclick="prevSlide()">&#10094;</button>
+                            <button class = "next" onclick = "nextSlide()">&#10095;</button>
                         </div>
                     </section>
                 </main>
