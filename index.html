@@ -32,7 +32,7 @@
             <main>
                 <section id = "plugin">
                     <h2>Welcome to my little shop of necklaces and trinkets!</h2>
-                <!--- <h4 id = "plugin-topic" class = "sr-only">Accordion</h4>-->
+                    <!--- <h4 id = "plugin-topic" class = "sr-only">Accordion</h4>-->
                     <section id = "accordion" class="subsec" aria-labelledby="plugin-topic">
                         <h5>About the Owner</h5>
                         <section class = "no_shadow">
@@ -57,16 +57,12 @@
                                 <li>Earrings: $10 - $15</li>
                             </ul>
                         </section>
-                        <!--<h5>Reviews</h5>
-                        <section class = "no_shadow">
-                            <p>hiiii</p>
-                        </section>-->
                     </section>
                 </section>
                 <section id = "ajaxSection">
                     <h2>Moodboards and Inspo</h2>
                     <section id="pinterestAPI" class="subsec">
-                <!--SEO API Example-->
+                    <!--SEO API Example-->
                         <form>
                             <label for="searchTopic">Enjoy an aesthetic moodboard on your screen:</label>
                             <span class="message"></span>
@@ -76,10 +72,10 @@
                         <div id="pinterestResults"></div>
                     </section>
                 </section>
-                <section id = "ajaxSection">
+                <!--<section id = "ajaxSection">
                     <h2>Social Media Feed</h2>
                     <section id="apisExample" class="subsec">
-                <!--SEO API Example-->
+                SEO API Example
                 <form>
                     <label for="searchTopic">Instagram</label>
                     <span class="message"></span>
@@ -87,58 +83,57 @@
                     <input type="submit" name="mySubmit" id="mySubmit" value="Search Instagram">
                 </form>
                 <div id="results"></div>
-            </section>
                 </section>
+                </section>-->
                 <section id = "order">
                     <h2>Order Custom Design</h2>
                     <section id="storeObjects">
-            <p>You can also store objects in local storage. They key/value pair syntax should sound familiar in that we use those to represent values in objects as well, but because each item in storage is a single pair you may think that it's necessary to store each property of the object separately. In fact, you can use the JSON methods stringify and parse to format your object data to save as a value in web storage and then use it again in your code, similar to the way you'd handle communicating with an API.</p>
-            <p id="objectDisplay"></p>
-            <form>
-                <label for="firstName">First Name:<span class="required">*</span></label>
-                <span class="message">Please enter your first name</span>
-                <input type="text" name="firstName" id="firstName">
-                <label for="lastName">Last Name:<span class="required">*</span></label>
-                <span class="message">Please enter your last name</span>
-                <input type="text" name="lastName" id="lastName">
-                <fieldset>
-                    <legend>Metal<span class="required">*</span></legend>
-                    <input type="radio" name="metal" id="prefGold" checked>
-                    <label for="email">Gold</label>
-                    <input type="radio" name="metal" id="prefSilver">
-                    <label for="phone">Silver</label>
-                </fieldset>
-                <label for="myEmail">Email Address:<span class="required">*</span></label>
-                <span class="message">Please enter your email address</span>
-                <input type="email" name="myEmail" id="myEmail">
-                <label for="myPhone">Phone Number:<span class="hidden required">*</span></label>
-                <span class="message">Please enter your phone number</span>
-                <!--Add comment box-->
-                <input type="tel" name="myPhone" id="myPhone">
-                <input type="submit" name="objSubmit" id="objSubmit">
-            </form>
-            </section>
-            </div>
-        <div id="modal2" class="hidden">
-            <div id="inner-modal2">
-                <p>There is already a user in local storage. Do you want to erase that user's information and save this information instead?</p>
-                <button id="confirm2">Yes, Add the New User to Storage</button>
-                <button id="cancel2">No, Do Not Replace the Original User in Storage</button>
-                </section>
-                <section id = "slideshow">
-                    <h2>Gallery</h2>
-                    <div class = "carousel">
-                        <div class = "slides">
-                            <img class = "slide" src = "GreenNecklace.jpg" alt = "Green and gold crystal necklace on display stand with sun pendant in the center and stars hanging down by chains">
-                            <img class = "slide" src = "Pixienecklace.jpg" alt = "Tinkerbell inspired necklace with golden fairy wings in the center and green beads on one side and blue on the other.">
-                            <img class = "slide" src = "DaphneNecklace.jpg" alt = "simple and elegant necklace with purple crystals and diamonds. There is also a purple crystal-like pendant at the center.">
+                <!-- <p>You can also store objects in local storage. They key/value pair syntax should sound familiar in that we use those to represent values in objects as well, but because each item in storage is a single pair you may think that it's necessary to store each property of the object separately. In fact, you can use the JSON methods stringify and parse to format your object data to save as a value in web storage and then use it again in your code, similar to the way you'd handle communicating with an API.</p>-->
+                        <p id="objectDisplay"></p>
+                        <form>
+                            <label for="firstName">First Name:<span class="required">*</span></label>
+                            <span class="message">Please enter your first name</span>
+                            <input type="text" name="firstName" id="firstName">
+                            <label for="lastName">Last Name:<span class="required">*</span></label>
+                            <span class="message">Please enter your last name</span>
+                            <input type="text" name="lastName" id="lastName">
+                            <fieldset>
+                            <legend>Metal<span class="required">*</span></legend>
+                            <input type="radio" name="metal" id="prefGold" checked>
+                            <label for="email">Gold</label>
+                            <input type="radio" name="metal" id="prefSilver">
+                            <label for="phone">Silver</label>
+                            </fieldset>
+                            <label for="myEmail">Email Address:<span class="required">*</span></label>
+                            <span class="message">Please enter your email address</span>
+                            <input type="email" name="myEmail" id="myEmail">
+                            <label for="myPhone">Phone Number:<span class="hidden required">*</span></label>
+                            <span class="message">Please enter your phone number</span>
+                            <!--Add comment box-->
+                            <input type="tel" name="myPhone" id="myPhone">
+                            <input type="submit" name="objSubmit" id="objSubmit">
+                        </form>
+                    </section>
+                    <div id="modal2" class="hidden">
+                        <div id="inner-modal2">
+                        <p>There is already a user in local storage. Do you want to erase that user's information and save this information instead?</p>
+                        <button id="confirm2">Yes, Add the New User to Storage</button>
+                        <button id="cancel2">No, Do Not Replace the Original User in Storage</button>
                         </div>
-                        <button class = "previous" onclick="prevSlide()">&#10094</button>
-                        <button class = "next" onclick = "nextSlide()">&#10095</button>
-
                     </div>
-                </section>
-            </main>
+                    <section id = "slideshow">
+                        <h2>Gallery</h2>
+                        <div class = "carousel">
+                            <div class = "slides">
+                                <img class = "slide" src = "GreenNecklace.jpg" alt = "Green and gold crystal necklace on display stand with sun pendant in the center and stars hanging down by chains">
+                                <img class = "slide" src = "Pixienecklace.jpg" alt = "Tinkerbell inspired necklace with golden fairy wings in the center and green beads on one side and blue on the other.">
+                                <img class = "slide" src = "DaphneNecklace.jpg" alt = "simple and elegant necklace with purple crystals and diamonds. There is also a purple crystal-like pendant at the center.">
+                            </div>
+                            <button class = "previous" onclick="prevSlide()">&#10094</button>
+                            <button class = "next" onclick = "nextSlide()">&#10095</button>
+                        </div>
+                    </section>
+                </main>
             <footer>
                 <small>Copyright 2025 Whimsical Treasures</small>
             </footer>

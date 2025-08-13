@@ -15,6 +15,8 @@ header {
   background-color: var(--silver);
   margin: 0 auto;
   opacity: 0.8;
+  padding-bottom: 10px;
+
 }
 
 .bona-nova-regular {
@@ -80,7 +82,14 @@ a {
   font-weight: 200;
   font-size: 25px;
 }
-
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 nav a:hover {
   color: var(--dk-green);
   font-size: 26px;
@@ -116,7 +125,20 @@ img.displaySlide {
   border: none;
   cursor: pointer;
 }
+/*#modal2 {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  text-align: center;
+}
 
+#modal2.show{
+  display: flex;
+}
+*/
 .previous {
   left: 0;
 }
@@ -128,4 +150,42 @@ img.displaySlide {
 @keyframes fade {
   from{opacity: .5}
   to {opacity: 1}
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+}
+
+input {
+  display: block;
+  width: calc(100% - 1.5em);
+  padding: 0.5em;
+  outline: none;
+  font-size: 1.1rem;
+}
+
+button, input[type=submit] {
+  display: block;
+  margin: 1rem auto;
+  background-color: var(--lt-green);
+  outline: none;
+  padding: 0.75em;
+  font-family: "bona nova", serif;
+  font-size: 1em;
+  box-shadow: -6px 6px 6px var(--dk-green);
+  height: auto;
+  
+
+
+}
+#order form {
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto 2rem auto;
+  font-size: 1.1rem;
+  accent-color: var(--lt-green);
 }

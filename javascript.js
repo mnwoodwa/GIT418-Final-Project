@@ -1,109 +1,5 @@
 $("#accordion").accordion();
 
-
-/*document.querySelector("#pinterestSubmit").addEventListener("click", function(e){
-    e.preventDefault();
-    //form input
-    let searchInput = document.getElementById("#searchPinterest");
-
-    //search query variable
-    let query = encodeURIComponent(searchInput.value.trim());
-
-    // error message span
-   let errorSpan = document.querySelector("#pinterestAPI .message");
-
-    //build output
-    let output = "<ul>";
-
-    //display output
-    let searchResults = document.getElementById("pinterestResults");
-    //searchResults.innerHTML = "";
-
-     if(searchInput.value === "") {
-        //display error
-       searchInput.classList.add("errorInput");
-       errorSpan.classList.add("error");
-       return;
-    } else {
-        const data = null;
-        const urlStart = 'https://pinterest-image-api1.p.rapidapi.com/images';
-        const rapidApiKey = '7d3cfbb5e5msh8095543ec6da539p175e26jsn4dbfdc1cc7e6';
-        const endPoint = `${urlStart}?term=${query}`;
-
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-
-    xhr.addEventListener("readystatechange", function(){
-        if(this.readyState === this.DONE) {
-            //check status of returned response. Only want to show successful
-            if(this.status === 200) {
-                //API to JSON object
-                let response = JSON.parse(this.responseText);
-                //allow us to preview data
-                console.log(response.images);
-
-                //let output = "<ul>";
-                for(let imageUrl of response.images) {
-                    output += `<li><img src = "${imageUrl}" width: "200";"></li>`;
-                }
-                output += "</ul>";
-                searchResults.innerHTML = output;
-                searchInput.value = "";
-            } else {
-                searchResults.innerHTML = "<p>There was an issue with your call to the API.</p>";
-                //console.error("API error:", this.status, this.responseText);
-            }
-        }
-    });
-    //send ajax request
-    xhr.open('GET', endPoint);
-    xhr.setRequestHeader('x-rapidapi-key', rapidApiKey);
-    xhr.setRequestHeader('x-rapidapi-host', 'pinterest-image-api1.p.rapidapi.com');
-
-    xhr.send(data);
-    }
-})
-   
-    */
-/*function fetchAndDisplayImagesXHR() {
-
-    const url = 'https://pinscrape.p.rapidapi.com/api/kurizutaz/sketches/pins';
-
-    xhr.open('GET', url);
-    xhr.withCredentials = true;
-
-    xhr.setRequestHeader('x-rapidapi-key', '7d3cfbb5e5msh8095543ec6da539p175e26jsn4dbfdc1cc7e6');
-    xhr.setRequestHeader('x-rapidapi-host', 'pinscrape.p.rapidapi.com');
-
-    xhr.onReadyStateChange = function() {
-        if(xhr.readyState === XMLHttpRequest.DONE) {
-            if(xhr.status === 200) {
-                try {
-                    const data = JSON.parse(xhr.responseText);
-                    const resultsDiv = document.getElementById('pinterestResults');
-                    resultsDiv.innerHTML = "";
-
-                    data.images.forEach(image => {
-                        const img = document.createElement('img');
-                        img.src = image.src;
-                        img.alt = image.alt || 'Pinterest image';
-                        img.style.width = '200px';
-                        img.style.margin = '5px';
-                        resultsDiv.appendChild(img);
-                    });
-                } catch(error) {
-                    console.error('Error parsing JSON:', error);
-                }
-            } else {
-                console.error('API request failed with status:', xhr.status);
-            }
-        }
-    };
-    xhr.send();
-}
-
-fetchAndDisplayImagesXHR();
-*/
 document.addEventListener("DOMContentLoaded", () => {
     const pinterestForm = document.querySelector("#pinterestAPI form");
     const resultsDiv = document.getElementById("pinterestResults");
@@ -151,6 +47,61 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector("#storeObjects form");
+    const display = document.getElementById("objectDisplay");
+    const modal = document.getElementById("modal2");
+    const confirmBtn = document.getElementById("confirm2");
+    const cancelBtn = document.getElementById("cancel2");
+
+    let pendingUserData = null; //stores user that is about to be saved
+
+    const storedUser = localStorage.getItem("user");
+    if(storedUser) {
+        const userObj = JSON.parse(storedUser);
+        display.textContent = `Welcome back, ${userObj.firstName} ${userObj.lastName}`;
+    }
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
+
+        const userObj = {
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            metal: document.querySelector('input[name = "metal"]:checked').id === "prefGold" ? "Gold" : "Silver",
+            email: document.getElementById("myEmail").value,
+            phone: document.getElementById("myPhone").value
+        };
+        const existingUser = localStorage.getItem("user");
+
+        if(existingUser) {
+            pendingUserData = userObj;
+            modal.classList.remove("hidden");
+        } else {
+            saveUser(userObj);
+        }
+    });
+
+    confirmBtn.addEventListener("click", function(){
+        if(pendingUserData) {
+            saveUser(pendingUserData);
+            pendingUserData = null;
+        }
+        modal.classList.add("hidden");
+    });
+
+    cancelBtn.addEventListener("click", function(){
+        pendingUserData = null;
+        modal.classList.add("hidden");
+    });
+
+    function saveUser(userObj) {
+        localStorage.setItem("user", JSON.stringify(userObj));
+        display.textContent = `Welcome, ${userObj.firstName} ${userObj.lastName}`;
+    }
+});
+//});
+/*
 function createUser(e) {
     e.preventDefault();
 
@@ -286,7 +237,7 @@ function displayUser() {
         //display object properties
         outputP.innerHTML = output;
     }
-}
+}*/
 
 const slides = document.querySelectorAll(".slides img");
 let slideIndex = 0;
